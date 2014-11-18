@@ -29,7 +29,6 @@
             <li ng-repeat="repo in repos | searchRepoFilter:searchTerm:searchMode">
                 <a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a>
                 <span>{{repo.description}}</span>
-                <a href="">X</a>
             </li>
         </ol>
     </div>
