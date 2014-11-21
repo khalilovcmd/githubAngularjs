@@ -5,8 +5,10 @@
 
     <ul>
         <li ng-repeat="commit in commits">
-            <span>{{ commit.sha}}</span>
-            <span>{{ commit.author.login}}</span>
+        	<a href="{{ commit.html_url }}" target="_blank">
+	            <span>{{ commit.sha}}</span>
+	            <span>{{ commit.author.login}}</span>
+            </a>
         </li>
     </ul>
     

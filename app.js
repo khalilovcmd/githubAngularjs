@@ -24,6 +24,7 @@ appModule.controller('commitController',
         gitFetcherService
             .fetchCommits($scope.userName, $scope.repoName)
             .success(function (result) {
+                console.log(result);
                 $scope.commits = result;
             });
     });
