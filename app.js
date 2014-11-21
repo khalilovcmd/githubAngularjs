@@ -1,6 +1,29 @@
 // main application module
 var appModule = angular.module('githubApp', ['ngRoute']);
 
+// for c# like syntax
+String.format = function(){
+
+    var args = arguments,
+        string = args[0];
+
+    // replace occurances of {n} with arguments[n]
+    return string.replace(new RegExp("\\{([0-9]+)\\}", "g"), function (match, subMatch) {
+
+        // added 1 because the first argument is the string itself
+        var index = parseInt(subMatch) + 1;
+
+        // value not found
+        if (typeof args[index] == "undefined")
+            throw String.format("value not found at index:{0} for the string:{1}", index, string);
+
+        // return the replacement
+        return args[index];
+
+    });
+
+};
+
 appModule.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
@@ -10,11 +33,12 @@ appModule.config(function ($routeProvider) {
         .when('/commit/:userName/:repoName', {
             templateUrl: 'views/commits.html',
             controller: 'commitController'
-        })
+        })        
         .otherwise({
             redirectTo: '/'
         });
 });
+
 
 appModule.controller('commitController',
     function ($scope, gitFetcherService, $routeParams) {
@@ -54,19 +78,30 @@ appModule.controller('homeController',
 
 appModule.service('gitFetcherService',
     function ($http) {
+
+        var githubApiHost = "https://api.github.com"
+
         this.fetchRepos = function (userName) {
             return $http({
                 method: 'Get',
-                url: 'https://api.github.com/users/' + userName + '/repos'
+                url: String.format("{0}/users/{1}/repos", githubApiHost, userName)
             });
         };
 
         this.fetchCommits = function (userName, repoName) {
             return $http({
                 method: 'Get',
-                url: 'https://api.github.com/repos/' + userName + '/' + repoName + '/commits'
+                url: String.format("{0}/repos/{1}/{2}/commits", githubApiHost, userName, repoName)
             });
         };
+
+        this.fetchTags = function (userName, repoName) {
+            return $http({
+                method: 'Get',
+                url: String.format("{0}/repos/{1}/{2}/tags", githubApiHost, userName, repoName)
+            });
+        };
+
     });
 
 appModule.filter('searchRepoFilter',

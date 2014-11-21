@@ -17,4 +17,6 @@ app.get("/", function(req, res) {
 });
 
 // listen on configured port
-app.listen(4000);
+port = 4000
+app.listen(port);
+console.log("listening on port " + port);
