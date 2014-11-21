@@ -1,0 +1,23 @@
+{
+  "name": "githubAngularjs",
+  "version": "0.0.0",
+  "description": "githubAngularjs ===============",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/khlaliovcmd/githubAngularjs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khlaliovcmd/githubAngularjs/issues"
+  },
+  "homepage": "https://github.com/khlaliovcmd/githubAngularjs",
+  "dependencies": {
+    "ejs": "^1.0.0",
+    "express": "^4.10.2"
+  }
+}
