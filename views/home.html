@@ -1,0 +1,29 @@
+<div ng-controller="homeController">
+    
+    <h3>{{ appTitle }}</h3>
+    <h4>{{ appDesc }}</h4>
+
+    <div>
+        <form ng-submit="getRepos()">
+            <input type="text" ng-model="userName">
+            <input type="submit" value="get">
+        </form>
+    </div>
+
+    <div ng-show="canSearch">
+        <span>search: </span>
+        <input type="text" ng-model="searchTerm"><br/>
+        <input type="radio" ng-model="searchMode" name="searching" value="name" >Name<br/>
+        <input type="radio" ng-model="searchMode" name="searching" value="desc">Description<br/>
+    </div>
+
+    <div>
+        <ol>
+            <li ng-repeat="repo in repos | searchRepoFilter:searchTerm:searchMode">
+                <a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a>
+                <span>{{repo.description}}</span>
+                <a href="#/commit/{{userName}}/{{repo.name}}">commits</a>
+            </li>
+        </ol>
+    </div>
+</div>

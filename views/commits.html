@@ -1,0 +1,13 @@
+<div ng-controller="commitController">
+    
+    <span>{{ userName }}</span>
+    <span>{{ repoName }}</span>
+
+    <ul>
+        <li ng-repeat="commit in commits">
+            <span>{{ commit.sha}}</span>
+            <span>{{ commit.author.login}}</span>
+        </li>
+    </ul>
+    
+</div>
